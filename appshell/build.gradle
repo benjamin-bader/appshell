@@ -1,0 +1,26 @@
+apply plugin: 'com.android.library'
+apply plugin: 'checkstyle'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionName VERSION_NAME
+    }
+
+    lintOptions {
+        textReport true
+        textOutput 'stdout'
+    }
+}
+
+dependencies {
+    compile rootProject.ext.dependencies.beanshell
+
+    testCompile rootProject.ext.dependencies.junit
+}
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
